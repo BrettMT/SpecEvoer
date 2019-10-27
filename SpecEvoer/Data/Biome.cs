@@ -4,36 +4,87 @@ namespace SpecEvoer.Data
 {
     public class Biome : IDescribing, IDating
     {
-        public Biome(List<Biome> biomes, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public Biome(TempatureRange tempature, PressureRange pressure, Climate humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
-            Biomes = biomes;
+            Tempature = tempature;
+            Pressure = pressure;
+            Humidity = humidity;
             Name = name;
             StartYear = startYear;
             EndYear = endYear;
             Description = description;
             Keywords = keywords;
+
+            //These are done seperate.
+            Energies = new List<EnergySources>();
+            Biomes = new List<Biome>();
         }
 
-        public void Edit(List<Biome> biomes, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public void Edit(List<Biome> biomes, TempatureRange tempature, PressureRange pressure, List<EnergySources> energies, Climate humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
-            Biomes = biomes;
+            
+            Tempature = tempature;
+            Pressure = pressure;
+            Humidity = humidity;
             Name = name;
             StartYear = startYear;
             EndYear = endYear;
             Description = description;
             Keywords = keywords;
+
+            //This differs from Construction in that it will generally pass the old biome and old energies back in.
+            Biomes = biomes;
+            Energies = energies;
         }
+
+        public void AddBiome(Biome b)
+        {
+            Biomes.Add(b);
+        }
+
+        public void RemoveBiome(Biome b)
+        {
+            Biomes.Remove(b);
+        }
+
+        public void AddEnergySource(EnergySources e)
+        {
+            Energies.Add(e);
+        }
+
+        public void RemoveEnergySource(EnergySources e)
+        {
+            Energies.Remove(e);
+        }
+
+
+
 
         //What other biomes are part of this.
         public List<Biome> Biomes { get; set; }
 
         //What is the pressure like, tempature, humidity?
-        public Tempature Tempature { get; set; }
+        public TempatureRange Tempature { get; set; }
 
-        public Pressure Pressure { get; set; }
+        public PressureRange Pressure { get; set; }
+
+        public List<EnergySources> Energies {get; set;}
 
         public enum Climate { Dry, Mild, Wet}
         public Climate Humidity { get; set; }
+
+
+        public int TotalWattage
+        { get
+            {
+                int temp = 0;
+                foreach(EnergySources e in Energies)
+                {
+                    temp += e.Watts;
+                }
+                return temp;
+            }
+        }
 
 
         #region Interfaces

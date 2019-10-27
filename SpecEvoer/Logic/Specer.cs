@@ -105,11 +105,17 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void AddBiome()
+        public void AddBiome(int uk, int lk, int up, int lp, Biome.Climate humidity, string name, int startYear, int endYear, string description, string keys)
         {
             try
             {
+                TempatureRange t = new TempatureRange(uk, lk);
+                PressureRange p = new PressureRange(up, lp);
+                Year sy = new Year(startYear);
+                Year ey = new Year(endYear);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
 
+                Biosphere.Biomes.Add(new Biome(t, p, humidity, name, sy, ey, description, keywords));
                 Logger.AddLog($"Added the biome: {name}");
             }
             catch
@@ -118,11 +124,17 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void EditBiome(Biome b)
+        public void EditBiome(Biome b, int uk, int lk, int up, int lp, Biome.Climate humidity, string name, int startYear, int endYear, string description, string keys)
         {
             try
             {
+                TempatureRange t = new TempatureRange(uk, lk);
+                PressureRange p = new PressureRange(up, lp);
+                Year sy = new Year(startYear);
+                Year ey = new Year(endYear);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
 
+                b.Edit(b.Biomes, t, p, b.Energies, humidity, name, sy, ey, description, keywords);
                 Logger.AddLog($"Edited the biome: {b.Name}");
             }
             catch
@@ -130,6 +142,69 @@ namespace SpecEvoer.Logic
                 Logger.AddLog($"Unable to add the biome: {b.Name}");
             }
         }
+
+        public void AddSubBiome(Biome main, Biome sub)
+        {
+
+            try
+            {
+                main.AddBiome(sub);
+                Logger.AddLog($"Added the sub Biome {sub.Name} to {main.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the sub Biome {sub.Name} to {main.Name}");
+            }
+            
+        }
+
+        public void RemoveSubBiome(Biome main, Biome sub)
+        {
+
+            try
+            {
+                main.RemoveBiome(sub);
+                Logger.AddLog($"Removed the sub Biome {sub.Name} to {main.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to remove the sub Biome {sub.Name} to {main.Name}");
+            }
+
+        }
+
+        public void AddEnergySource(Biome main, Energy e, int wattage)
+        {
+
+            try
+            {
+                EnergySources es = new EnergySources(e, wattage);
+
+                main.AddEnergySource(es);
+                Logger.AddLog($"Added the Energy Source {e.ToString()} to {main.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the Energy Source {e.ToString()} to {main.Name}");
+            }
+
+        }
+
+        public void RemoveEnergySource(Biome main, EnergySources es)
+        {
+
+            try
+            {
+                main.RemoveEnergySource(es);
+                Logger.AddLog($"Removed the Energy Source {es.Energy.ToString()} to {main.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to remove the Energy Source {es.Energy.ToString()} to {main.Name}");
+            }
+
+        }
+
 
         public void RemoveBiome(Biome b)
         {
@@ -146,7 +221,7 @@ namespace SpecEvoer.Logic
         #endregion
 
 
-        public void CreateNewCategory()
+        public void AddNewClade()
         {
 
         }

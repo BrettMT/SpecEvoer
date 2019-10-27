@@ -2,9 +2,9 @@
 
 namespace SpecEvoer.Data
 {
-    public class Clade : IDescribing, IDating
+    public class Clade : IDescribing, IDating, IBiological
     {
-        public Categorical Categorical; //All extant members are also part of other clades.
+        public Categorical Categorical = new Categorical(); //All extant members are also part of other clades.
 
         public Clade(Clade parent, List<Clade> decendants, List<Species> members, List<Biome> biomes, Year startYear, Year endYear, string name, string description, List<string> keywords)
         {
@@ -32,12 +32,40 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
+        public void SetCategorical(bool b, int year)
+        {
+            Categorical.isCategorical = b;
+            Categorical.Point.year = year;
+        }
+
+
+
         public Clade Parent { get; set; }
         public List<Clade> Decendants { get; set; }
         public List<Species> Members { get; set; }
         public List<Biome> Biomes { get; set; }
 
+
+
+
         #region Interfaces
+        public Energy EnergyTroph { get; set; }
+        public ElectronDonor ElectronDonor { get; set; }
+        public BuildingSource BuildingSource { get; set; }
+
+        public TempatureRange Tempature { get; set; }
+        public PressureRange Pressure { get; set; }
+
+        public void CopyFrom(IBiological source)
+        {
+            EnergyTroph = source.EnergyTroph;
+            ElectronDonor = source.ElectronDonor;
+            BuildingSource = source.BuildingSource;
+
+            Tempature = source.Tempature;
+            Pressure = source.Pressure;
+        }
+
         public Year StartYear { get; set; }
         public Year EndYear { get; set; }
 
@@ -56,12 +84,32 @@ namespace SpecEvoer.Data
         }
         #endregion
     }
+    public enum ElectronDonor { Organo, Litho, Ion}
+    public enum BuildingSource { CarbonHetero, SiliconHetero, CarbonAuto, SiliconAuto, MetalHetero, MetalAuto, NitroHetero, NitroAuto, BoronHetero, BoronAuto}
 
-    public struct Categorical: ITimelineEvent
+    public class Categorical: ITimelineEvent
     {
-        bool isCategorical;
+        public bool isCategorical;
+
+        public Categorical() 
+        {
+            this.isCategorical = false;
+            Point = new Year(0);
+        }
 
         public Year Point { get; set; }
+    }
+
+    public interface IBiological
+    {
+        Energy EnergyTroph { get; set; }
+        ElectronDonor ElectronDonor { get; set; }
+        BuildingSource BuildingSource { get; set; }
+
+        TempatureRange Tempature { get; set; }
+        PressureRange Pressure { get; set; }
+
+        void CopyFrom(IBiological source);
     }
 
 

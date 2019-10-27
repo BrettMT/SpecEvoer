@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpecEvoer.Data
 {
-    public class Species : IDescribing, IDating
+    public class Species : IDescribing, IDating, IBiological
     {
         public Species(Clade cateogry, Biome biome, Species parent, List<Species> decendants, Year startYear, Year endYear, string name, string description, List<string> keywords)
         {
@@ -41,6 +41,23 @@ namespace SpecEvoer.Data
 
 
         #region Interfaces
+        public Energy EnergyTroph { get; set; }
+        public ElectronDonor ElectronDonor { get; set; }
+        public BuildingSource BuildingSource { get; set; }
+
+        public TempatureRange Tempature { get; set; }
+        public PressureRange Pressure { get; set; }
+
+        public void CopyFrom(IBiological source)
+        {
+            EnergyTroph = source.EnergyTroph;
+            ElectronDonor = source.ElectronDonor;
+            BuildingSource = source.BuildingSource;
+
+            Tempature = source.Tempature;
+            Pressure = source.Pressure;
+        }
+
         public Year StartYear { get; set; }
         public Year EndYear { get; set; }
 
