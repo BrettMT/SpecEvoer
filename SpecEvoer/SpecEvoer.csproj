@@ -119,7 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Biome.cs" />
+    <Compile Include="Data\Biosphere.cs" />
+    <Compile Include="Data\Clade.cs" />
+    <Compile Include="Data\Era.cs" />
+    <Compile Include="Data\ITimelineEvent.cs" />
+    <Compile Include="Data\IDating.cs" />
+    <Compile Include="Data\IDescribing.cs" />
     <Compile Include="Data\Species.cs" />
+    <Compile Include="Data\Year.cs" />
     <Compile Include="Logic\Specer.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

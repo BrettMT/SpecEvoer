@@ -7,18 +7,31 @@ using System.Threading.Tasks;
 
 namespace SpecEvoer.Logic
 {
+
     class Specer
     {
-        Biosphere Biosphere;
+        private Biosphere Biosphere;
 
         public void CreateNewBiosphere()
         {
             Biosphere = new Biosphere();
         }
 
-        public void CreateNewEra()
+        public void LoadBiosphere()
         {
+            throw new NotImplementedException();
+        }
 
+        public void SaveBiosphere()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateNewEra(string name, int start, int end, )
+        {
+            new 
+
+            Biosphere?.Eras.Add(new Era(name, ))
         }
 
         public void CreateNewCategory()

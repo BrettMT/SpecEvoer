@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SpecEvoer.Data
 {
-    public class Species : IDescribing, IDating
+    public class Clade : IDescribing, IDating
     {
-        public Species(Clade cateogry, Biome biome, Species parent, List<Species> decendants, Year startYear, Year endYear, string name, string description, List<string> keywords)
+        public Categorical Categorical; //All extant members are also part of other clades.
+
+        public Clade(Clade parent, List<Clade> decendants, List<Species> members, List<Biome> biomes, Year startYear, Year endYear, string name, string description, List<string> keywords)
         {
-            Cateogry = cateogry;
-            Biome = biome;
             Parent = parent;
             Decendants = decendants;
+            Members = members;
+            Biomes = biomes;
             StartYear = startYear;
             EndYear = endYear;
             Name = name;
@@ -21,12 +19,12 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
-        public void Edit(Clade cateogry, Biome biome, Species parent, List<Species> decendants, Year startYear, Year endYear, string name, string description, List<string> keywords)
+        public void Edit(Clade parent, List<Clade> decendants, List<Species> members, List<Biome> biomes, Year startYear, Year endYear, string name, string description, List<string> keywords)
         {
-            Cateogry = cateogry;
-            Biome = biome;
             Parent = parent;
             Decendants = decendants;
+            Members = members;
+            Biomes = biomes;
             StartYear = startYear;
             EndYear = endYear;
             Name = name;
@@ -34,11 +32,10 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
-        public Clade Cateogry { get; set; }
-        public Biome Biome { get; set; }
-        public Species Parent { get; set; }
-        public List<Species> Decendants { get; set; }
-
+        public Clade Parent { get; set; }
+        public List<Clade> Decendants { get; set; }
+        public List<Species> Members { get; set; }
+        public List<Biome> Biomes { get; set; }
 
         #region Interfaces
         public Year StartYear { get; set; }
@@ -58,6 +55,13 @@ namespace SpecEvoer.Data
             get => EndYear.year == -2;
         }
         #endregion
+    }
+
+    public struct Categorical: ITimelineEvent
+    {
+        bool isCategorical;
+
+        public Year Point { get; set; }
     }
 
 
