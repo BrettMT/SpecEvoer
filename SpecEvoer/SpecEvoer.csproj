@@ -126,7 +126,9 @@
     <Compile Include="Data\ITimelineEvent.cs" />
     <Compile Include="Data\IDating.cs" />
     <Compile Include="Data\IDescribing.cs" />
+    <Compile Include="Data\Pressure.cs" />
     <Compile Include="Data\Species.cs" />
+    <Compile Include="Data\Tempature.cs" />
     <Compile Include="Data\Year.cs" />
     <Compile Include="Logic\Specer.cs" />
     <Compile Include="MainPage.xaml.cs">

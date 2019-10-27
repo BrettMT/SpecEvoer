@@ -6,9 +6,9 @@ namespace SpecEvoer.Data
     public class Biosphere
     {
         public ObservableCollection<Era> Eras = new ObservableCollection<Era>();
-        public List<Clade> Cateogries = new List<Clade>();
-        public List<Species> Species = new List<Species>();
-        public List<Biome> Biomes = new List<Biome>();
+        public ObservableCollection<Clade> Cateogries = new ObservableCollection<Clade>();
+        public ObservableCollection<Species> Species = new ObservableCollection<Species>();
+        public ObservableCollection<Biome> Biomes = new ObservableCollection<Biome>();
     }
 
 

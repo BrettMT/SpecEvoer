@@ -94,6 +94,58 @@ namespace SpecEvoer.Logic
         }
         #endregion
 
+        #region Biome
+        public event EventHandler BiomesChanged;
+
+        public ObservableCollection<Biome> Biomes
+        {
+            get
+            {
+                return Biosphere?.Biomes ?? null;
+            }
+        }
+
+        public void AddBiome()
+        {
+            try
+            {
+
+                Logger.AddLog($"Added the biome: {name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the biome: {name}");
+            }
+        }
+
+        public void EditBiome(Biome b)
+        {
+            try
+            {
+
+                Logger.AddLog($"Edited the biome: {b.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the biome: {b.Name}");
+            }
+        }
+
+        public void RemoveBiome(Biome b)
+        {
+            try
+            {
+
+                Logger.AddLog($"Removed the biome: {b.Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the biome: {b.Name}");
+            }
+        }
+        #endregion
+
+
         public void CreateNewCategory()
         {
 

@@ -27,16 +27,29 @@
                 VerticalAlignment="Bottom" Width="200" Click="EditBtn_Click"/>
         <Button x:Name="RemoveBtn" Content="Remove Era" HorizontalAlignment="Left" Margin="635,0,0,10" 
                 VerticalAlignment="Bottom" Width="200" Click="RemoveBtn_Click"/>
-        <ListView x:Name="listView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                  Margin="840,10,10,10" Width="430" SelectionChanged="ListView_SelectionChanged">
+        <ListView x:Name="listView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  Margin="840,60,10,10" SelectionChanged="ListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <TextBlock Text="{Binding Name}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" Grid.Column="0" />
+                        <TextBlock Text="{Binding StartYear.year}" Grid.Column="1"/>
+                        <TextBlock Text="{Binding EndYear.year}" Grid.Column="2"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="840,30,0,0"
+                   Text="Era Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="left" Margin="990,30,0,0" 
+                   Text="Start Year" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="1140,30,0,0" 
+                   Text="End Year" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
 
 
     </Grid>

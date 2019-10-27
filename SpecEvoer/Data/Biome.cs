@@ -24,7 +24,17 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
+        //What other biomes are part of this.
         public List<Biome> Biomes { get; set; }
+
+        //What is the pressure like, tempature, humidity?
+        public Tempature Tempature { get; set; }
+
+        public Pressure Pressure { get; set; }
+
+        public enum Climate { Dry, Mild, Wet}
+        public Climate Humidity { get; set; }
+
 
         #region Interfaces
         public string Name { get; set; }
@@ -45,6 +55,4 @@ namespace SpecEvoer.Data
         #endregion
 
     }
-
-
 }
