@@ -22,9 +22,14 @@ namespace SpecEvoer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        Logic.Specer Specer = new Logic.Specer();
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            Type t = typeof(Pages.EraPage);
+            frame.Navigate(t, Specer);
         }
     }
 }

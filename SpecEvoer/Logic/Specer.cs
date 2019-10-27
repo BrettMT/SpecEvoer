@@ -1,6 +1,7 @@
 ﻿using SpecEvoer.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ using System.Threading.Tasks;
 namespace SpecEvoer.Logic
 {
 
-    class Specer
+    public class Specer
     {
-        private Biosphere Biosphere;
+        private Biosphere Biosphere = new Biosphere();
+        public Logger Logger = new Logger();
 
         public void CreateNewBiosphere()
         {
@@ -27,12 +29,70 @@ namespace SpecEvoer.Logic
             throw new NotImplementedException();
         }
 
-        public void CreateNewEra(string name, int start, int end, )
-        {
-            new 
+        #region Eras
 
-            Biosphere?.Eras.Add(new Era(name, ))
+        public event EventHandler ErasChanged;
+
+        public ObservableCollection<Era> Eras
+        {
+            get
+            {
+                return Biosphere?.Eras ?? null;
+            }
         }
+
+        public void AddNewEra(string name, int start, int end, string description, string keys)
+        {
+            try
+            {
+                Year startYear = new Year(start);
+                Year endYear = new Year(end);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
+
+
+                Biosphere?.Eras.Add(new Era(name, startYear, endYear, description, keywords));
+                Logger.AddLog($"Added the era: {name}");
+                ErasChanged.Invoke(this, null);
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the era: {name}");
+            }
+        }
+
+        public void EditEra(Era source, string name, int start, int end, string description, string keys)
+        {
+            try
+            {
+                Year startYear = new Year(start);
+                Year endYear = new Year(end);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
+
+
+                source.Edit(name, startYear, endYear, description, keywords);
+                Logger.AddLog($"Edited the era: {source.Name}");
+                ErasChanged.Invoke(this, null);
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to Edit the era: {source.Name}");
+            }
+        }
+
+        public void RemoveEra(Era era)
+        {
+            try
+            {
+                Biosphere?.Eras.Remove(era);
+                Logger.AddLog($"Removed the era: {era.Name}");
+                ErasChanged.Invoke(this, null);
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to Remove the era: {era.Name}");
+            }
+        }
+        #endregion
 
         public void CreateNewCategory()
         {
@@ -44,4 +104,28 @@ namespace SpecEvoer.Logic
 
         }
     }
+
+    public class Logger
+    {
+        private List<string> _Logs = new List<string>();
+        public string RecentLog { get; private set;}
+
+        public void AddLog(string log)
+        {
+            RecentLog = log;
+            _Logs.Add(log);
+        }
+
+        public List<string> Logs
+        {
+            get
+            {
+                //This will create a shallow copy.
+                return _Logs.ToList();
+            }
+        }
+
+    }
+
+        
 }

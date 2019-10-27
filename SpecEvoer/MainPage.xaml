@@ -9,6 +9,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Button x:Name="MainBtn" Content="Main Page" HorizontalAlignment="Left" Margin="10,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Loading and Saving functionality."/>
+        <Button x:Name="SearchBtn" Content="Search Page" HorizontalAlignment="Left" Margin="220,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Search the Bioshpere."/>
+        <Button x:Name="EraBtn" Content="Era Page" HorizontalAlignment="Left" Margin="430,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Adding, Editing, Deleting Eras"/>
+        <Button x:Name="BiomeBtn" Content="Biome Page" HorizontalAlignment="Left" Margin="640,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Adding, Editing, Deleting Biomes"/>
+        <Button x:Name="CladeBtn" Content="Clade Page" HorizontalAlignment="Left" Margin="850,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Adding, Editing, Deleting Clades"/>
+        <Button x:Name="SpeciesBtn" Content="Species Page" HorizontalAlignment="Left" Margin="1060,10,0,0" 
+                VerticalAlignment="Top" Height="40" Width="200" 
+                ToolTipService.ToolTip="Adding, Editing, Deleting Species"/>
+        <Frame x:Name="frame" Content="Loading..." HorizontalAlignment="Stretch" Margin="10,60,10,10" 
+               VerticalAlignment="Stretch"/>
+        
 
     </Grid>
 </Page>

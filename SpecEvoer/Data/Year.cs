@@ -8,6 +8,11 @@ namespace SpecEvoer.Data
 {
     public class Year
     {
+        public Year(int year)
+        {
+            this.year = year;
+        }
+
         public int year { get; set; }
 
         public string KY
