@@ -2,13 +2,13 @@
 {
     public struct TempatureRange
     {
-        int Upperkelvin;
-        int Lowerkelvin;
+        public int UpperKelvin { get; set; }
+        public int LowerKelvin { get; set; }
 
         public TempatureRange(int upperkelvin, int lowerkelvin)
         {
-            Upperkelvin = upperkelvin;
-            Lowerkelvin = lowerkelvin;
+            UpperKelvin = upperkelvin;
+            LowerKelvin = lowerkelvin;
         }
     }
 

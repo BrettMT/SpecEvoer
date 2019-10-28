@@ -36,9 +36,6 @@ namespace SpecEvoer.Pages
             base.OnNavigatedTo(e);
             Specer = (Logic.Specer)e.Parameter;
 
-            Specer.AddNewEra("test", 0, 10, "yes", "YES");
-            Specer.AddNewEra("try", 0, 20, "yes", "YES");
-
             listView.ItemsSource = Specer.Eras;
             Specer.ErasChanged += UpdateEraList;
         }

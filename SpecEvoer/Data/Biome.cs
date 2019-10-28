@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SpecEvoer.Data
 {
     public class Biome : IDescribing, IDating
     {
-        public Biome(TempatureRange tempature, PressureRange pressure, Climate humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public Biome(TempatureRange tempature, PressureRange pressure, int humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
             Tempature = tempature;
             Pressure = pressure;
@@ -17,10 +18,10 @@ namespace SpecEvoer.Data
 
             //These are done seperate.
             Energies = new List<EnergySources>();
-            Biomes = new List<Biome>();
+            Biomes = new ObservableCollection<Biome>();
         }
 
-        public void Edit(List<Biome> biomes, TempatureRange tempature, PressureRange pressure, List<EnergySources> energies, Climate humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public void Edit(ObservableCollection<Biome> biomes, TempatureRange tempature, PressureRange pressure, List<EnergySources> energies, int humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
             
             Tempature = tempature;
@@ -61,7 +62,7 @@ namespace SpecEvoer.Data
 
 
         //What other biomes are part of this.
-        public List<Biome> Biomes { get; set; }
+        public ObservableCollection<Biome> Biomes { get; set; }
 
         //What is the pressure like, tempature, humidity?
         public TempatureRange Tempature { get; set; }
@@ -70,9 +71,38 @@ namespace SpecEvoer.Data
 
         public List<EnergySources> Energies {get; set;}
 
-        public enum Climate { Dry, Mild, Wet}
-        public Climate Humidity { get; set; }
+        private int _humidity;
+        public int Humidity
+        {
+            get
+            {
+                return _humidity;
+            }
+            set
+            {
+                if (0 > value)
+                {
+                    _humidity = 0;
+                }
+                else if (value > 100)
+                {
+                    _humidity = 100;
+                }
+                else
+                {
+                    _humidity = value;
+                }
+            }
+        }
 
+        public Era LongestExtent
+        {
+            get
+            {
+                Era e = Logic.Checker.CheckEraWithLongestExtent(StartYear.year, EndYear.year);
+                return e;
+            }
+        }
 
         public int TotalWattage
         { get
@@ -105,5 +135,9 @@ namespace SpecEvoer.Data
         }
         #endregion
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

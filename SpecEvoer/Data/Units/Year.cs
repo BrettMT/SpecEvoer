@@ -8,6 +8,7 @@ namespace SpecEvoer.Data
 {
     public class Year
     {
+        //100 Kilo Years
         public Year(int year)
         {
             this.year = year;
@@ -15,19 +16,16 @@ namespace SpecEvoer.Data
 
         public int year { get; set; }
 
-        public string KY
-        {
-            get => (year / 1000).ToString();
-        }
+
 
         public string MY
         {
-            get => (year / 1000000).ToString();
+            get => (year / 10).ToString();
         }
 
         public string BY
         {
-            get => (year/ 1000000000).ToString();
+            get => (year/ 10000).ToString();
         }
     }
 }
