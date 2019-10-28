@@ -41,7 +41,7 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void AddNewEra(string name, int start, int end, string description, string keys)
+        public void AddNewEra(string name, double start, double end, string description, string keys)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void EditEra(Era source, string name, int start, int end, string description, string keys)
+        public void EditEra(Era source, string name, double start, double end, string description, string keys)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void AddBiome(int uk, int lk, int up, int lp, int humidity, string name, int startYear, int endYear, string description, string keys)
+        public void AddBiome(double uk, double lk, double up, double lp, double humidity, string name, double startYear, double endYear, string description, string keys)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace SpecEvoer.Logic
             }
         }
 
-        public void EditBiome(Biome b, int uk, int lk, int up, int lp, int humidity, string name, int startYear, int endYear, string description, string keys)
+        public void EditBiome(Biome b, double uk, double lk, double up, double lp, double humidity, string name, double startYear, double endYear, string description, string keys)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace SpecEvoer.Logic
                 Year ey = new Year(endYear);
                 List<string> keywords = keys.ToUpper().Split(' ').ToList();
 
-                b.Edit(b.Biomes, t, p, b.Energies, humidity, name, sy, ey, description, keywords);
+                b.Edit(b.Biomes, t, p, humidity, name, sy, ey, description, keywords);
                 Logger.AddLog($"Edited the biome: {b.Name}");
                 BiomesChanged.Invoke(this, null);
             }
@@ -175,39 +175,6 @@ namespace SpecEvoer.Logic
             }
 
         }
-
-        public void AddEnergySource(Biome main, Energy e, int wattage)
-        {
-
-            try
-            {
-                EnergySources es = new EnergySources(e, wattage);
-
-                main.AddEnergySource(es);
-                Logger.AddLog($"Added the Energy Source {e.ToString()} to {main.Name}");
-            }
-            catch
-            {
-                Logger.AddLog($"Unable to add the Energy Source {e.ToString()} to {main.Name}");
-            }
-
-        }
-
-        public void RemoveEnergySource(Biome main, EnergySources es)
-        {
-
-            try
-            {
-                main.RemoveEnergySource(es);
-                Logger.AddLog($"Removed the Energy Source {es.Energy.ToString()} to {main.Name}");
-            }
-            catch
-            {
-                Logger.AddLog($"Unable to remove the Energy Source {es.Energy.ToString()} to {main.Name}");
-            }
-
-        }
-
 
         public void RemoveBiome(Biome b)
         {
@@ -261,7 +228,7 @@ namespace SpecEvoer.Logic
     {
         static public Specer Specer;
 
-        static public Era CheckEraWithLongestExtent(int start, int end)
+        static public Era CheckEraWithLongestExtent(double start, double end)
         {
             List<Era> eras = new List<Era>();
 
@@ -277,7 +244,7 @@ namespace SpecEvoer.Logic
             return DetermineEraWithLongestExtent(eras, start, end);
         }
 
-        static private bool FallsWithin(int start, int end, Era e)
+        static private bool FallsWithin(double start, double end, Era e)
         {
             //If the starting position falls between the beginning and end of an era, its within that era. If the start comes right as the era ends its not part of that era.
             if(e.StartYear.year <= start && start < e.EndYear.year)
@@ -298,14 +265,14 @@ namespace SpecEvoer.Logic
             return false;
         }
 
-        static private Era DetermineEraWithLongestExtent(IEnumerable<Era> es, int start, int end)
+        static private Era DetermineEraWithLongestExtent(IEnumerable<Era> es, double start, double end)
         {
             Era result = null;
-            int extant = 0;
+            double extant = 0;
             foreach(Era e in es)
             {
-                int beginningExtantYear;
-                int EndExtantYear;
+                double beginningExtantYear;
+                double EndExtantYear;
 
                 //If the era starts before our date, use our date. else the era starts after our date so use its start date instead.
                 if(e.StartYear.year < start)
@@ -329,7 +296,7 @@ namespace SpecEvoer.Logic
 
                 //End minus beggining(example 25y - 5y = 20y) is the extent of time we spent in this era.
 
-                int extent = EndExtantYear - beginningExtantYear;
+                double extent = EndExtantYear - beginningExtantYear;
 
                 //If this extent is greater than the highest extent so far set it and era.
                 if(extent > extant)

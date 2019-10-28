@@ -5,7 +5,7 @@ namespace SpecEvoer.Data
 {
     public class Biome : IDescribing, IDating
     {
-        public Biome(TempatureRange tempature, PressureRange pressure, int humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public Biome(TempatureRange tempature, PressureRange pressure, double humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
             Tempature = tempature;
             Pressure = pressure;
@@ -17,11 +17,10 @@ namespace SpecEvoer.Data
             Keywords = keywords;
 
             //These are done seperate.
-            Energies = new List<EnergySources>();
             Biomes = new ObservableCollection<Biome>();
         }
 
-        public void Edit(ObservableCollection<Biome> biomes, TempatureRange tempature, PressureRange pressure, List<EnergySources> energies, int humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
+        public void Edit(ObservableCollection<Biome> biomes, TempatureRange tempature, PressureRange pressure, double humidity, string name, Year startYear, Year endYear, string description, List<string> keywords)
         {
             
             Tempature = tempature;
@@ -35,7 +34,6 @@ namespace SpecEvoer.Data
 
             //This differs from Construction in that it will generally pass the old biome and old energies back in.
             Biomes = biomes;
-            Energies = energies;
         }
 
         public void AddBiome(Biome b)
@@ -46,16 +44,6 @@ namespace SpecEvoer.Data
         public void RemoveBiome(Biome b)
         {
             Biomes.Remove(b);
-        }
-
-        public void AddEnergySource(EnergySources e)
-        {
-            Energies.Add(e);
-        }
-
-        public void RemoveEnergySource(EnergySources e)
-        {
-            Energies.Remove(e);
         }
 
 
@@ -69,10 +57,8 @@ namespace SpecEvoer.Data
 
         public PressureRange Pressure { get; set; }
 
-        public List<EnergySources> Energies {get; set;}
-
-        private int _humidity;
-        public int Humidity
+        private double _humidity;
+        public double Humidity
         {
             get
             {
@@ -107,7 +93,7 @@ namespace SpecEvoer.Data
         public int TotalWattage
         { get
             {
-                int temp = 0;
+                double temp = 0;
                 foreach(EnergySources e in Energies)
                 {
                     temp += e.Watts;

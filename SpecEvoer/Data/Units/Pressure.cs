@@ -2,13 +2,13 @@
 {
     public struct PressureRange
     {
-        public PressureRange(int upperAtmo, int lowerAtmo)
+        public PressureRange(double upperAtmo, double lowerAtmo)
         {
             UpperAtmo = upperAtmo;
             LowerAtmo = lowerAtmo;
         }
 
-        public float UpperAtmo { get; set; }
-        public float LowerAtmo { get; set; }
+        public double UpperAtmo { get; set; }
+        public double LowerAtmo { get; set; }
     }
 }

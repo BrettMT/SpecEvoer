@@ -32,7 +32,7 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
-        public void SetCategorical(bool b, int year)
+        public void SetCategorical(bool b, double year)
         {
             Categorical.isCategorical = b;
             Categorical.Point.year = year;
