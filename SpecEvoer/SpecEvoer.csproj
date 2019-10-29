@@ -121,8 +121,8 @@
     </Compile>
     <Compile Include="Data\Biome.cs" />
     <Compile Include="Data\Biosphere.cs" />
+    <Compile Include="Data\Features.cs" />
     <Compile Include="Data\Clade.cs" />
-    <Compile Include="Data\Units\EnergySources.cs" />
     <Compile Include="Data\Era.cs" />
     <Compile Include="Data\Interfaces\ITimelineEvent.cs" />
     <Compile Include="Data\Interfaces\IDating.cs" />
@@ -140,6 +140,9 @@
     </Compile>
     <Compile Include="Pages\EraPage.xaml.cs">
       <DependentUpon>EraPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FeaturePage.xaml.cs">
+      <DependentUpon>FeaturePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FeaturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

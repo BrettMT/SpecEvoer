@@ -190,6 +190,154 @@ namespace SpecEvoer.Logic
         }
         #endregion
 
+        #region Features
+        public ObservableCollection<Senses> Senses
+        {
+            get
+            {
+                return Biosphere?.Senses ?? null;
+            }
+        }
+
+        public ObservableCollection<BodyPlan> BodyPlan
+        {
+            get
+            {
+                return Biosphere?.BodyPlans ?? null;
+            }
+        }
+
+        public ObservableCollection<Social> Social
+        {
+            get
+            {
+                return Biosphere?.Socials ?? null;
+            }
+        }
+
+        public ObservableCollection<Niche> Niche
+        {
+            get
+            {
+                return Biosphere?.Niches ?? null;
+            }
+        }
+
+        public ObservableCollection<Reproduction> Reproduction
+        {
+            get
+            {
+                return Biosphere?.Reproductions ?? null;
+            }
+        }
+
+        public ObservableCollection<Biochemistry> Biochemistry
+        {
+            get
+            {
+                return Biosphere?.Biochemistries ?? null;
+            }
+        }
+
+        public void AddFeature(Feature feature, string name, string description, string keys)
+        {
+            try
+            {
+                switch (feature)
+                {
+                    case Feature.BodyPlan:
+                        Biosphere.BodyPlans.Add(new Data.BodyPlan(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                    case Feature.Niche:
+                        Biosphere.Niches.Add(new Data.Niche(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                    case Feature.Social:
+                        Biosphere.Socials.Add(new Data.Social(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                    case Feature.Reproduction:
+                        Biosphere.Reproductions.Add(new Data.Reproduction(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                    case Feature.Senses:
+                        Biosphere.Senses.Add(new Data.Senses(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                    case Feature.Biochemistry:
+                        Biosphere.Biochemistries.Add(new Data.Biochemistry(name, description, keys.ToUpper().Split(' ').ToList()));
+                        break;
+                }
+                Logger.AddLog($"Added feature {feature.ToString()}: {name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add feature: {name}");
+            }
+        }
+
+        public void EditFeature(Feature feature, object o, string name, string description, string keys)
+        {
+            try
+            {
+                switch (feature)
+                {
+                    case Feature.BodyPlan:
+                        ((BodyPlan)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                    case Feature.Niche:
+                        ((Niche)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                    case Feature.Social:
+                        ((Social)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                    case Feature.Reproduction:
+                        ((Reproduction)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                    case Feature.Senses:
+                        ((Senses)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                    case Feature.Biochemistry:
+                        ((Biochemistry)o).Edit(name, description, keys.ToUpper().Split(' ').ToList());
+                        break;
+                }
+                Logger.AddLog($"Edited feature {feature.ToString()}: {name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to edit feature: {((IDescribing)o).Name}");
+            }
+        }
+
+        public void RemoveFeature(Feature feature, object o)
+        {
+            try
+            {
+                switch (feature)
+                {
+                    case Feature.BodyPlan:
+                        Biosphere.BodyPlans.Remove((BodyPlan)o);
+                        break;
+                    case Feature.Niche:
+                        Biosphere.Niches.Remove((Niche)o);
+                        break;
+                    case Feature.Social:
+                        Biosphere.Socials.Remove((Social)o);
+                        break;
+                    case Feature.Reproduction:
+                        Biosphere.Reproductions.Remove((Reproduction)o);
+                        break;
+                    case Feature.Senses:
+                        Biosphere.Senses.Remove((Senses)o);
+                        break;
+                    case Feature.Biochemistry:
+                        Biosphere.Biochemistries.Remove((Biochemistry)o);
+                        break;
+                }
+                Logger.AddLog($"Removed feature {feature.ToString()}: {((IDescribing)o).Name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to remove feature: {((IDescribing)o).Name}");
+            }
+        }
+        #endregion
 
         public void AddNewClade()
         {
@@ -312,5 +460,5 @@ namespace SpecEvoer.Logic
         }
     }
 
-        
+
 }

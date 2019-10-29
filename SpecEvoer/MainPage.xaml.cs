@@ -43,7 +43,7 @@ namespace SpecEvoer
             Specer.AddSubBiome(Specer.Biomes[0], Specer.Biomes[1]);
             Specer.AddSubBiome(Specer.Biomes[0], Specer.Biomes[2]);
 
-            Type t = typeof(Pages.BiomePage);
+            Type t = typeof(Pages.FeaturePage);
             frame.Navigate(t, Specer);
         }
     }

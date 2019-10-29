@@ -49,18 +49,24 @@ namespace SpecEvoer.Data
 
 
         #region Interfaces
-        public Energy EnergyTroph { get; set; }
-        public ElectronDonor ElectronDonor { get; set; }
-        public BuildingSource BuildingSource { get; set; }
+        public BodyPlan BodyPlan { get; set; }
+        public Reproduction Reproduction { get; set; }
+        public Senses Senses { get; set; }
+        public Niche Niche { get; set; }
+        public Social Social { get; set; }
+        public Biochemistry Biochemistry { get; set; }
 
         public TempatureRange Tempature { get; set; }
         public PressureRange Pressure { get; set; }
 
         public void CopyFrom(IBiological source)
         {
-            EnergyTroph = source.EnergyTroph;
-            ElectronDonor = source.ElectronDonor;
-            BuildingSource = source.BuildingSource;
+            BodyPlan = source.BodyPlan;
+            Reproduction = source.Reproduction;
+            Senses = source.Senses;
+            Niche = source.Niche;
+            Social = source.Social;
+            Biochemistry = source.Biochemistry;
 
             Tempature = source.Tempature;
             Pressure = source.Pressure;
@@ -84,8 +90,6 @@ namespace SpecEvoer.Data
         }
         #endregion
     }
-    public enum ElectronDonor { Organo, Litho, Ion}
-    public enum BuildingSource { CarbonHetero, SiliconHetero, CarbonAuto, SiliconAuto, MetalHetero, MetalAuto, NitroHetero, NitroAuto, BoronHetero, BoronAuto}
 
     public class Categorical: ITimelineEvent
     {
@@ -102,10 +106,13 @@ namespace SpecEvoer.Data
 
     public interface IBiological
     {
-        Energy EnergyTroph { get; set; }
-        ElectronDonor ElectronDonor { get; set; }
-        BuildingSource BuildingSource { get; set; }
-
+        BodyPlan BodyPlan { get; set; }
+        Reproduction Reproduction { get; set; }
+        Senses Senses { get; set; }
+        Niche Niche { get; set; }
+        Social Social { get; set; }
+        Biochemistry Biochemistry { get; set; }
+       
         TempatureRange Tempature { get; set; }
         PressureRange Pressure { get; set; }
 

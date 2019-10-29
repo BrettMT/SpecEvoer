@@ -90,14 +90,10 @@ namespace SpecEvoer.Data
             }
         }
 
-        public int TotalWattage
+        public double TotalWattage
         { get
             {
                 double temp = 0;
-                foreach(EnergySources e in Energies)
-                {
-                    temp += e.Watts;
-                }
                 return temp;
             }
         }

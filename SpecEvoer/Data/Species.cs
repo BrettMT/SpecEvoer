@@ -41,18 +41,24 @@ namespace SpecEvoer.Data
 
 
         #region Interfaces
-        public Energy EnergyTroph { get; set; }
-        public ElectronDonor ElectronDonor { get; set; }
-        public BuildingSource BuildingSource { get; set; }
+        public BodyPlan BodyPlan { get; set; }
+        public Reproduction Reproduction { get; set; }
+        public Senses Senses { get; set; }
+        public Niche Niche { get; set; }
+        public Social Social { get; set; }
+        public Biochemistry Biochemistry { get; set; }
 
         public TempatureRange Tempature { get; set; }
         public PressureRange Pressure { get; set; }
 
         public void CopyFrom(IBiological source)
         {
-            EnergyTroph = source.EnergyTroph;
-            ElectronDonor = source.ElectronDonor;
-            BuildingSource = source.BuildingSource;
+            BodyPlan = source.BodyPlan;
+            Reproduction = source.Reproduction;
+            Senses = source.Senses;
+            Niche = source.Niche;
+            Social = source.Social;
+            Biochemistry = source.Biochemistry;
 
             Tempature = source.Tempature;
             Pressure = source.Pressure;
