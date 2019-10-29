@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SpecEvoer.Data
 {
@@ -55,6 +56,7 @@ namespace SpecEvoer.Data
         public Niche Niche { get; set; }
         public Social Social { get; set; }
         public Biochemistry Biochemistry { get; set; }
+        public ObservableCollection<Relation> Relations { get; set; }
 
         public TempatureRange Tempature { get; set; }
         public PressureRange Pressure { get; set; }
@@ -67,6 +69,10 @@ namespace SpecEvoer.Data
             Niche = source.Niche;
             Social = source.Social;
             Biochemistry = source.Biochemistry;
+            //I dont want a shallow copy of the list, I dont want to pass the list.
+            ObservableCollection<Relation> temp = new ObservableCollection<Relation>();
+            foreach(Relation r in source.Relations) { temp.Add(r); }
+            Relations = temp;
 
             Tempature = source.Tempature;
             Pressure = source.Pressure;
@@ -102,21 +108,6 @@ namespace SpecEvoer.Data
         }
 
         public Year Point { get; set; }
-    }
-
-    public interface IBiological
-    {
-        BodyPlan BodyPlan { get; set; }
-        Reproduction Reproduction { get; set; }
-        Senses Senses { get; set; }
-        Niche Niche { get; set; }
-        Social Social { get; set; }
-        Biochemistry Biochemistry { get; set; }
-       
-        TempatureRange Tempature { get; set; }
-        PressureRange Pressure { get; set; }
-
-        void CopyFrom(IBiological source);
     }
 
 

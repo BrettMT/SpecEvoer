@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Data\Biome.cs" />
     <Compile Include="Data\Biosphere.cs" />
+    <Compile Include="Data\Interfaces\IBiological.cs" />
     <Compile Include="Data\Juncture.cs" />
     <Compile Include="Data\Features.cs" />
     <Compile Include="Data\Clade.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Data\Interfaces\ITimelineEvent.cs" />
     <Compile Include="Data\Interfaces\IDating.cs" />
     <Compile Include="Data\Interfaces\IDescribing.cs" />
+    <Compile Include="Data\Relation.cs" />
     <Compile Include="Data\Units\Pressure.cs" />
     <Compile Include="Data\Species.cs" />
     <Compile Include="Data\Units\Tempature.cs" />

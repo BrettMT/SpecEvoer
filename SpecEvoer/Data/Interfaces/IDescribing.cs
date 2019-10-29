@@ -2,7 +2,7 @@
 
 namespace SpecEvoer.Data
 {
-    interface IDescribing
+    public interface IDescribing
     {
         string Name { get; set; }
         string Description { get; set; }
