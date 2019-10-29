@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Data\Biome.cs" />
     <Compile Include="Data\Biosphere.cs" />
+    <Compile Include="Data\Juncture.cs" />
     <Compile Include="Data\Features.cs" />
     <Compile Include="Data\Clade.cs" />
     <Compile Include="Data\Era.cs" />
@@ -143,6 +144,9 @@
     </Compile>
     <Compile Include="Pages\FeaturePage.xaml.cs">
       <DependentUpon>FeaturePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\JuncturePage.xaml.cs">
+      <DependentUpon>JuncturePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -180,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\FeaturePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\JuncturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

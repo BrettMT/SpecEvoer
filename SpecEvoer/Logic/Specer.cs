@@ -339,6 +339,64 @@ namespace SpecEvoer.Logic
         }
         #endregion
 
+        #region Juncture
+        public ObservableCollection<Juncture> Juncture
+        {
+            get
+            {
+                return Biosphere?.Junctures ?? null;
+            }
+        }
+
+        public void AddNewJuncture(Era caused, double date, string name, string description, string keys)
+        {
+            try
+            {
+                Year year = new Year(date);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
+
+
+                Biosphere?.Junctures.Add(new Juncture(caused, year, name, description, keywords));
+                Logger.AddLog($"Added the Juncture: {name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to add the Juncture: {name}");
+            }
+        }
+
+        public void EditJuncture(Juncture source, Era caused, double date, string name, string description, string keys)
+        {
+            try
+            {
+                Year year = new Year(date);
+                List<string> keywords = keys.ToUpper().Split(' ').ToList();
+
+
+                source.Edit(caused, year, name, description, keywords);
+                Logger.AddLog($"Edited the Juncture: {name}");
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to Edit the Juncture: {source.Name}");
+            }
+        }
+
+        public void RemoveJuncture(Juncture juncture)
+        {
+            try
+            {
+                Biosphere?.Junctures.Remove(juncture);
+                Logger.AddLog($"Removed the Juncture: {juncture.Name}");
+                ErasChanged.Invoke(this, null);
+            }
+            catch
+            {
+                Logger.AddLog($"Unable to Remove the Juncture: {juncture.Name}");
+            }
+        }
+        #endregion
+
         public void AddNewClade()
         {
 

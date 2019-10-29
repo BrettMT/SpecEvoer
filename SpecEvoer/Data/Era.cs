@@ -22,7 +22,11 @@ namespace SpecEvoer.Data
             Keywords = keywords;
         }
 
-        
+        public override string ToString()
+        {
+            return Name;
+
+        }
 
         #region Interface
         public string Name { get; set; }

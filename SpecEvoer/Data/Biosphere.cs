@@ -10,6 +10,8 @@ namespace SpecEvoer.Data
         public ObservableCollection<Species> Species = new ObservableCollection<Species>();
         public ObservableCollection<Biome> Biomes = new ObservableCollection<Biome>();
 
+        public ObservableCollection<Juncture> Junctures = new ObservableCollection<Juncture>();
+
         //The Features
         public ObservableCollection<Senses> Senses = new ObservableCollection<Senses>();
         public ObservableCollection<Reproduction> Reproductions = new ObservableCollection<Reproduction>();
