@@ -141,6 +141,9 @@
     <Compile Include="Pages\BiomePage.xaml.cs">
       <DependentUpon>BiomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CladePage.xaml.cs">
+      <DependentUpon>CladePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EraPage.xaml.cs">
       <DependentUpon>EraPage.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\BiomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CladePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
